@@ -9,4 +9,6 @@ in VHDL to 1 and -1.
 
 Binarize the weights only during forward and backward pass.
 Weight updating functions can differ with constant values to
-shift update valeus. 
+shift update valeus.
+
+![Binary CNN Algo](../images/xnor-bin-convolution.png)

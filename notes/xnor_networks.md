@@ -13,4 +13,7 @@ Idea is to do binarizing mechanism and use XNOR for vector multiplication.
 ## Find
 
 1. Dot product of Binary vectors
-2. XNOR bitcounting operations. 
+2. XNOR bitcounting operations.
+
+## XNOR Structure
+![XNOR](../images/ice-xnor-paper.png)
