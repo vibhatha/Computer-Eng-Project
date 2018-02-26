@@ -3,8 +3,8 @@
 * They have quantitatively analyzed computing throughput and required memory bandwidth of any potential solution of a CNN design on an FPGA platform using roofline analysis.
 
 ## Pseudo code of a tiled convolutional layer
-![XNOR](../images/fpga1.png)
+![XNOR](../images/fpga1.PNG)
 
 
 ## Pseudo code of proposed accelerator structure
-![XNOR](../images/fpga2.png)
+![XNOR](../images/fpga2.PNG)
