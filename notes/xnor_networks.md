@@ -16,4 +16,4 @@ Idea is to do binarizing mechanism and use XNOR for vector multiplication.
 2. XNOR bitcounting operations.
 
 ## XNOR Structure
-![XNOR](../images/ice-xnor-paper.png)
+![XNOR](../images/xnor-bin-convolution.png)

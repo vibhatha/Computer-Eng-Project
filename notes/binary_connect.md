@@ -11,4 +11,4 @@ Binarize the weights only during forward and backward pass.
 Weight updating functions can differ with constant values to
 shift update valeus.
 
-![Binary CNN Algo](../images/xnor-bin-convolution.png)
+![Binary CNN Algo](../images/ice-xnor-paper.png)
