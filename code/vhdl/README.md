@@ -1,5 +1,5 @@
 # VHDLXnor
 * Required codes
-[ ] XNOR
-[ ] POP Counter
-[ ] Multiplier
+  * XNOR
+  * POP Counter
+  * Multiplier
