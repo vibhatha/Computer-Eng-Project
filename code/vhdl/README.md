@@ -1,1 +1,2 @@
 # VHDLXnor
+* Required codes
