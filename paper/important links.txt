@@ -1,0 +1,10 @@
+XNOR + Pop counting 
+
+https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolution
+
+http://minjekim.com/demo_bnn.html
+
+https://sushscience.wordpress.com/2017/10/01/understanding-binary-neural-networks/
+
+
+
