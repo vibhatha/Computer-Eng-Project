@@ -91,9 +91,19 @@ class ImageAPI:
         myList = []
         for line in source_content:
             myList.append(line)
-        print(myList[0])
+
+        for item in myList:
+            elements = str.split(item,",")
+            size = len(elements)
+            for i in range(0, size):
+                value = float(elements[i])
+                if(value==0):
+                    print(value,elements[i])
 
     def csv2jpg(self, source_file):
         image_array = genfromtxt(source_file, delimiter=',')
         output_file = str.split(source_file,".")[0]+"_crop.jpg"
         scipy.misc.imsave(output_file, image_array)
+
+
+
