@@ -48,23 +48,25 @@ imcv1 = imcv.ImageCVAPI(file_path=image_base, source_file=image_file)
 # imcv1.img2bin()
 
 #imapi1.load_images_local()
-#base_path = ''
-#bin_dir = "binaries"
-#image_dir = "images"
-#image_urls = []
-#binary_image_file_path = "imageurls/localimages.txt"
-#imapi2 = imapi.ImageAPI(binary_image_file_path, base_path, bin_dir, image_dir)
+base_path = ''
+bin_dir = "binaries"
+image_dir = "images"
+image_urls = []
+binary_image_file_path = "imageurls/localimages.txt"
+imapi2 = imapi.ImageAPI(binary_image_file_path, base_path, bin_dir, image_dir)
 #download_paths = imapi2.download_images()
 #imapi2.load_images_local(download_paths)
 #imapi2.crop_image(width=200, height=200, source_image="binaries/image_3.mat")
 #imapi2.csv2jpg("binaries/image_3_200x200.min")
-#imapi2.pad_image("binaries/image_0_200x200.min", 1,imapi2.padwithones)
+imapi2.pad_image("binaries/image_3_200x200.min", 1,imapi2.padwithones)
 
-vhdl_source_bin_file = 'image_0_200x200_pad.min'
+vhdl_source_bin_file = 'image_3_200x200_pad.min'
 vhdl_source_bin_path = 'binaries/'
 
 vhdlapi2 = vhdlapi.VhdlAPI(source_bin_path=vhdl_source_bin_path, source_bin_file=vhdl_source_bin_file)
 
 vhdlapi2.bin2vhdl()
 
-vhdlapi2.vhdlbin2jpg('binaries/image_0_200x200_pad.vhdlbin')
+# vhdlapi2.vhdlbin2jpg('binaries/image_3_200x200_pad.vhdlbin')
+
+vhdlapi2.vhdlbinimg2binimg('binaries/image_3_200x200_pad.vhdlbin','images/ice_format/image_3_200x200_rev_vhdlbin.jpg')
