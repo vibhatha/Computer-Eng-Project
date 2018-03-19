@@ -1,0 +1,15 @@
+XNOR + Pop counting 
+
+https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolution
+
+http://minjekim.com/demo_bnn.html
+
+https://sushscience.wordpress.com/2017/10/01/understanding-binary-neural-networks/
+
+
+
+Image conversion
+Photoshop Greyscale => Threshold => ave BMP => https://www.text-image.com/convert
+
+
+
