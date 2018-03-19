@@ -2,6 +2,8 @@ import urllib
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import scipy.misc
+from numpy import genfromtxt
 
 class ImageAPI:
     image_urls = []
@@ -54,3 +56,44 @@ class ImageAPI:
             open(bin_path,"w")
             print(bin_path)
             np.savetxt(bin_path, gray, delimiter=',')
+
+
+    def crop_image(self, width = 50, height = 50, source_image='', start_pos_x = 100, start_pos_y = 100):
+        output_file = str.split(source_image, ".")[0]+"_"+str(height)+"x"+str(width)+ ".min"
+        source_content = open(source_image, "r")
+        output_file_writer = open(output_file, "w")
+        row_count = 0
+        myList = []
+        for line in source_content:
+            myList.append(line)
+        for item in myList:
+            if(row_count >= start_pos_y and row_count < start_pos_y + height):
+                elements = str.split(item,",")
+                write_line =''
+                y = start_pos_x + width
+                x = start_pos_x
+                count = 0
+                for i in range(x, y):
+                    if(count < width -1):
+                        write_line = write_line + elements[i] + ","
+                    else:
+                        write_line = write_line + elements[i] + "\n"
+                    count = count + 1
+                print(write_line)
+                output_file_writer.write(write_line)
+            row_count = row_count + 1
+
+    def binarize_matrix(self, source_file):
+        output_file = str.split(source_file,".")[0]+".bin"
+        print("Loading file : " + output_file)
+        source_content = open(source_file, "r")
+        print(source_content)
+        myList = []
+        for line in source_content:
+            myList.append(line)
+        print(myList[0])
+
+    def csv2jpg(self, source_file):
+        image_array = genfromtxt(source_file, delimiter=',')
+        output_file = str.split(source_file,".")[0]+"_crop.jpg"
+        scipy.misc.imsave(output_file, image_array)
