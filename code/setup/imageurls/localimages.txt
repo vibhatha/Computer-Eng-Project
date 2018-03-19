@@ -1,0 +1,4 @@
+images/image_0_bin.jpg
+images/image_1_bin.jpg
+images/image_2_bin.jpg
+images/image_3_bin.jpg

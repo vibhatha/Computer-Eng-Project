@@ -58,6 +58,21 @@ class ImageAPI:
             np.savetxt(bin_path, gray, delimiter=',')
 
 
+    def load_images_local(self, download_paths):
+        for image in download_paths:
+            print(image)
+            img = mpimg.imread(image)
+            gray = img
+            # plt.imshow(gray, cmap=plt.get_cmap('gray'))
+            # plt.show()
+            print(gray.shape)
+            print(gray)
+            bin_path = self.bin_dir + "/" + str.split(str.split(image,"/")[1],".")[0]+".mat"
+            open(bin_path,"w")
+            print(bin_path)
+            np.savetxt(bin_path, gray, delimiter=',')
+
+
     def crop_image(self, width = 50, height = 50, source_image='', start_pos_x = 100, start_pos_y = 100):
         output_file = str.split(source_image, ".")[0]+"_"+str(height)+"x"+str(width)+ ".min"
         source_content = open(source_image, "r")
