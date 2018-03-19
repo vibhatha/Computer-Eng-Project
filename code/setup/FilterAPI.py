@@ -24,3 +24,5 @@ class FilterAPI:
         print("Loading Filter : " + file_path)
         matrix = genfromtxt(file_path, delimiter=',')
         return matrix
+
+

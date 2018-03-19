@@ -105,5 +105,18 @@ class ImageAPI:
         output_file = str.split(source_file,".")[0]+"_crop.jpg"
         scipy.misc.imsave(output_file, image_array)
 
+    def padwithones(self,matrix, pad_width, iaxis, kwargs):
+        matrix[:pad_width[0]] = 1
+        matrix[-pad_width[1]:] = 1
+        return matrix
 
+    def pad_array(self, array, pad_width, padwidthones):
+        padarr = np.lib.pad(array, pad_width, padwidthones)
+        print(padarr)
 
+    def pad_image(self, source_file, pad_width, padwidthones):
+        image_array = genfromtxt(source_file, delimiter=',')
+        pad_image_array = np.lib.pad(image_array, pad_width, padwidthones)
+        dest_file = source_file.split(".")[0]+"_pad."+source_file.split(".")[1]
+        np.savetxt(dest_file, pad_image_array, delimiter=",")
+        return pad_image_array
