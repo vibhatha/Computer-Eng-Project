@@ -125,6 +125,11 @@ class ImageAPI:
         matrix[-pad_width[1]:] = 1
         return matrix
 
+    def padwithzeros(self, matrix, pad_width, iaxis, kwargs):
+        matrix[:pad_width[0]] = 0
+        matrix[-pad_width[1]:] = 0
+        return matrix
+
     def pad_array(self, array, pad_width, padwidthones):
         padarr = np.lib.pad(array, pad_width, padwidthones)
         print(padarr)
