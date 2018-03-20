@@ -54,10 +54,10 @@ image_dir = "images"
 image_urls = []
 binary_image_file_path = "imageurls/localimages.txt"
 imapi2 = imapi.ImageAPI(binary_image_file_path, base_path, bin_dir, image_dir)
-#download_paths = imapi2.download_images()
-#imapi2.load_images_local(download_paths)
-#imapi2.crop_image(width=200, height=200, source_image="binaries/image_3.mat")
-#imapi2.csv2jpg("binaries/image_3_200x200.min")
+# download_paths = imapi2.download_images()
+# imapi2.load_images_local(download_paths)
+# imapi2.crop_image(width=200, height=200, source_image="binaries/image_3.mat")
+# imapi2.csv2jpg("binaries/image_3_200x200.min")
 imapi2.pad_image("binaries/image_3_200x200.min", 1,imapi2.padwithones)
 
 vhdl_source_bin_file = 'image_3_200x200_pad.min'
