@@ -27,6 +27,16 @@ class ImageAPI:
         self.image_urls = image_urls
         return self.image_urls
 
+    def load_local_image_urls(self,image_file_path):
+        image_urls = []
+        print("Image Url File : " + image_file_path)
+        lines = open(image_file_path, "r")
+        for line in lines:
+            line = str.split(line,"\n")[0]
+            image_urls.append(line)
+            image_urls = image_urls
+        return image_urls
+
     def download_images(self):
         download_paths = []
         print("Downloading " + str(len(self.image_urls)) + " images ...")
@@ -73,8 +83,28 @@ class ImageAPI:
             np.savetxt(bin_path, gray, delimiter=',')
 
 
-    def crop_image(self, width = 50, height = 50, source_image='', start_pos_x = 100, start_pos_y = 100):
-        output_file = str.split(source_image, ".")[0]+"_"+str(height)+"x"+str(width)+ ".min"
+    def img2binary(self, download_paths, output_path):
+        for image in download_paths:
+            print(image)
+            img = mpimg.imread(image)
+            gray = img
+            # plt.imshow(gray, cmap=plt.get_cmap('gray'))
+            # plt.show()
+            print(gray.shape)
+            print(gray)
+            fnames = (str.split(image,"/"))
+            print(fnames)
+            bin_path = output_path + "/" + str.split(str.split(image,"/")[2],".")[0]+".mat"
+            open(bin_path,"w")
+            print(bin_path)
+            np.savetxt(bin_path, gray, delimiter=',')
+
+
+    def crop_image(self, width = 50, height = 50, source_image='', start_pos_x = 0, start_pos_y = 0, output_path=''):
+        fnames = str.split(source_image, ".")
+        file_name = str.split(fnames[0],"/")[2]
+        print(file_name)
+        output_file = output_path+file_name+"_"+str(width)+"x"+str(height)+".min"
         source_content = open(source_image, "r")
         output_file_writer = open(output_file, "w")
         row_count = 0
@@ -94,7 +124,7 @@ class ImageAPI:
                     else:
                         write_line = write_line + elements[i] + "\n"
                     count = count + 1
-                print(write_line)
+                #print(write_line)
                 output_file_writer.write(write_line)
             row_count = row_count + 1
 
@@ -115,9 +145,12 @@ class ImageAPI:
                 if(value==0):
                     print(value,elements[i])
 
-    def csv2jpg(self, source_file):
+    def csv2jpg(self, source_file, output_path):
         image_array = genfromtxt(source_file, delimiter=',')
-        output_file = str.split(source_file,".")[0]+"_crop.jpg"
+        fnames = str.split(source_file,".")
+        print(fnames)
+        file_name = str.split(fnames[0],"/")[4]
+        output_file = output_path+file_name+"_crop.jpg"
         scipy.misc.imsave(output_file, image_array)
 
     def padwithones(self,matrix, pad_width, iaxis, kwargs):
@@ -134,9 +167,12 @@ class ImageAPI:
         padarr = np.lib.pad(array, pad_width, padwidthones)
         print(padarr)
 
-    def pad_image(self, source_file, pad_width, padwidthones):
+    def pad_image(self, source_file, pad_width, padwidthones, dest_path=''):
         image_array = genfromtxt(source_file, delimiter=',')
         pad_image_array = np.lib.pad(image_array, pad_width, padwidthones)
-        dest_file = source_file.split(".")[0]+"_pad."+source_file.split(".")[1]
+        fnames = source_file.split(".")
+        # print(fnames)
+        file_name = str.split(fnames[0],"/")[4]
+        dest_file = dest_path+file_name+"_pad."+source_file.split(".")[1]
         np.savetxt(dest_file, pad_image_array, delimiter=",")
         return pad_image_array
