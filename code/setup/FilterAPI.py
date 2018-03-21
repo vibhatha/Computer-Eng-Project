@@ -38,7 +38,7 @@ class FilterAPI:
 
         return np.array(sliders)
 
-    def save_sliding_window(self, window_size=3, source_file='binaries/image_3_200x200_pad.vhdlbin', dest_file='binaries/sliding/file1_slidingwindow'):
+    def save_sliding_window(self, window_size=3, source_file='binaries/image_3_200x200_pad.pad', dest_file='binaries/sliding/file1_slidingwindow'):
         arr = genfromtxt(source_file, delimiter=',')
         new_arr = self.sliding_window(arr, window_size)
         rows = len(new_arr)

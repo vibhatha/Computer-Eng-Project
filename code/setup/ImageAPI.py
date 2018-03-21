@@ -97,7 +97,7 @@ class ImageAPI:
             bin_path = output_path + "/" + str.split(str.split(image,"/")[2],".")[0]+".mat"
             open(bin_path,"w")
             print(bin_path)
-            np.savetxt(bin_path, gray, delimiter=',')
+            np.savetxt(bin_path, gray, delimiter=',', fmt='%d')
 
 
     def crop_image(self, width = 50, height = 50, source_image='', start_pos_x = 0, start_pos_y = 0, output_path=''):
@@ -169,10 +169,13 @@ class ImageAPI:
 
     def pad_image(self, source_file, pad_width, padwidthones, dest_path=''):
         image_array = genfromtxt(source_file, delimiter=',')
+        print(source_file)
+        print("image_arr",image_array.shape)
         pad_image_array = np.lib.pad(image_array, pad_width, padwidthones)
+        print("pad_arr",pad_image_array.shape)
         fnames = source_file.split(".")
         # print(fnames)
         file_name = str.split(fnames[0],"/")[4]
         dest_file = dest_path+file_name+"_pad."+source_file.split(".")[1]
-        np.savetxt(dest_file, pad_image_array, delimiter=",")
+        np.savetxt(dest_file, pad_image_array, delimiter=",", fmt='%d')
         return pad_image_array

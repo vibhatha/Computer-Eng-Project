@@ -67,9 +67,9 @@ vhdlapi2 = vhdlapi.VhdlAPI(source_bin_path=vhdl_source_bin_path, source_bin_file
 
 vhdlapi2.bin2vhdl()
 
-# vhdlapi2.vhdlbin2jpg('binaries/image_3_200x200_pad.vhdlbin')
+# vhdlapi2.vhdlbin2jpg('binaries/image_3_200x200_pad.pad')
 
-vhdlapi2.vhdlbinimg2binimg('binaries/image_3_200x200_pad.vhdlbin','images/ice_format/image_3_200x200_rev_vhdlbin.jpg')
+vhdlapi2.vhdlbinimg2binimg('binaries/image_3_200x200_pad.pad','images/ice_format/image_3_200x200_rev_vhdlbin.jpg')
 
-fltapi1.save_sliding_window(window_size=3, source_file='binaries/image_3_200x200_pad.vhdlbin', dest_file='binaries/sliding/image_3_200x200_pad_slidingwindow.sld')
+fltapi1.save_sliding_window(window_size=3, source_file='binaries/image_3_200x200_pad.pad', dest_file='binaries/sliding/image_3_200x200_pad_slidingwindow.sld')
 

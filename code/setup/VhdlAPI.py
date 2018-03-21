@@ -14,19 +14,24 @@ class VhdlAPI:
         self.source_bin_path = source_bin_path
         self.source_bin_file = source_bin_file
 
-    def bin2vhdl(self):
+    def bin2vhdl(self,output_path=''):
+        fnames = str.split(self.source_bin_file,".")
+        print(fnames)
         source_file = self.source_bin_path + self.source_bin_file
-        output_file = self.source_bin_path + str.split(self.source_bin_file,".")[0]+".vhdlbin"
+        output_file = output_path + fnames[0]+".vhdlbin"
         print('Converting to VHDL Binary Format')
         array = genfromtxt(source_file, delimiter=',')
-        print(array)
-        array[array == 255.0] = 1
-        print(array)
-        np.savetxt(output_file, array, delimiter=",")
+        #array[array > 127] = 1
+        #array[array < 127] = 0
+        array = self.clip_array(array)
+        np.savetxt(output_file, array, delimiter=",", fmt='%d')
 
-    def vhdlbin2jpg(self,bin_file):
+    def padbin2jpg(self,bin_file, output_path=''):
         image_array = genfromtxt(bin_file, delimiter=',')
-        output_file = str.split(bin_file, ".")[0] + "_vhdl_crop.jpg"
+        fnames = str.split(bin_file, ".")
+        file_name = str.split(fnames[0],"/")[4]
+        print(fnames)
+        output_file = output_path + file_name + "_crop.jpg"
         scipy.misc.imsave(output_file, image_array)
 
     def remove_single_padding(self, arr):

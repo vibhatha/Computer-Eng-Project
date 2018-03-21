@@ -15,7 +15,7 @@ class VhdlAPI:
 
     def bin2vhdl(self):
         source_file = self.source_bin_path + self.source_bin_file
-        output_file = self.source_bin_path + str.split(self.source_bin_file,".")[0]+".vhdlbin"
+        output_file = self.source_bin_path + str.split(self.source_bin_file,".")[0]+".pad"
         print('Converting to VHDL Binary Format')
         array = genfromtxt(source_file, delimiter=',')
         print(array)
