@@ -67,8 +67,8 @@ fltapi1 = fltapi.FilterAPI(filter_path = filter_path, filter_file = filter_file)
 #
 # ## In this step we crop images
 # imapi3 = imapi.ImageAPI(binary_image_file_path, base_path, bin_dir, image_dir)
-# width=400
-# height=400
+# width=200
+# height=200
 # imageIds = [0,1,2,3]
 # for imageId in imageIds:
 #     print(imageId)
@@ -91,8 +91,8 @@ fltapi1 = fltapi.FilterAPI(filter_path = filter_path, filter_file = filter_file)
 #
 # imapi4 = imapi.ImageAPI(binary_image_file_path, base_path, bin_dir, image_dir)
 # dest_path = 'binaries/v2/crop/pad/'
-# width=400
-# height=400
+# width=200
+# height=200
 # imageIds = [0,1,2,3]
 # pad_width = 1
 # for imageId in imageIds:
@@ -103,9 +103,9 @@ fltapi1 = fltapi.FilterAPI(filter_path = filter_path, filter_file = filter_file)
 
 
 ## Step 6
-
-# width=400
-# height=400
+#
+# width=200
+# height=200
 # imageIds = [0,1,2,3]
 # pad_width = 1
 # vhdl_source_bin_path = 'binaries/v2/crop/pad/'
@@ -137,10 +137,12 @@ for imageId in imageIds:
     vhdlbin_img2_binimg_path = 'images/crop/v2/vhdlbin2jpg/image_'+str(imageId)+'_'+str(width)+'x'+str(height)+'_pad_rev_vhdlbin.jpg'
     vhdlapi3.vhdlbinimg2binimg(vhdlbin_file_path, vhdlbin_img2_binimg_path)
     vhdlbin_source_file= 'binaries/v2/crop/vhdlbin/image_'+str(imageId)+'_bin_'+str(width)+'x'+str(height)+'_pad.vhdlbin'
+    print(vhdlbin_source_file)
     slidingwindow_dest_file = 'binaries/v2/crop/sliding/image_'+str(imageId)+'_bin_'+str(width)+'x'+str(height)+'_pad_slidingwindow.sld'
     fltapi1.save_sliding_window(window_size=3, source_file=vhdlbin_source_file, dest_file=slidingwindow_dest_file)
-    slding_window_source_file = 'binaries/v2/crop/sliding/'+'image_'+str(imageId)+'_bin_'+str(width)+'x'+str(height)+'_pad_slidingwindow__'+str(width*height)+'x9.sld'
-    vhdlapi3.trimvhdlslds(slding_window_source_file)
+    #slding_window_source_file = 'binaries/v2/crop/sliding/'+'image_'+str(imageId)+'_bin_'+str(width)+'x'+str(height)+'_pad_slidingwindow__'+str(width*height)+'x9.sld'
+    #print("sliding windows source file : ", slding_window_source_file)
+    #vhdlapi3.trimvhdlslds(slding_window_source_file)
 
 ## This step saves the load the vhdlbin files and generate sliding window added .sld files
 

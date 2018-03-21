@@ -56,22 +56,24 @@ class VhdlAPI:
         new_array = self.vhdlbin2bin(source_file)
         scipy.misc.imsave(output_file, new_array)
 
+    def clip_array(self, array):
+        rows = len(array)
+        cols = len(array[0])
+        for i in range(0, rows):
+            for j in range(0, cols):
+                val = array[i][j]
+                if (val > 128):
+                    array[i][j] = 1
+                else:
+                    array[i][j] = 0
+        return array
+
     def trimvhdlslds(self,source_file):
         array = genfromtxt(source_file, delimiter=',')
         dest_file = str.split(source_file,".")[0]+"_trim.sdl"
         array1 = self.clip_array(array)
         array1 = array1.astype(int)
-        print(array1[21][5])
-        np.savetxt(dest_file, array1, delimiter="", fmt='%d')
+        # print(array1[21][5])
+        np.savetxt(dest_file, array1, delimiter='', fmt='%d')
 
-    def clip_array(self, array):
-        rows = len(array)
-        cols = len(array[0])
-        for i in range(0,rows):
-            for j in range(0,cols):
-                val = array[i][j]
-                if(val>128):
-                    array[i][j] = 1
-                else:
-                    array[i][j] = 0
-        return array
+
