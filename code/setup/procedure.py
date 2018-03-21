@@ -142,3 +142,7 @@ for imageId in imageIds:
     slding_window_source_file = 'binaries/v2/crop/sliding/'+'image_'+str(imageId)+'_bin_'+str(width)+'x'+str(height)+'_pad_slidingwindow__'+str(width*height)+'x9.sld'
     vhdlapi3.trimvhdlslds(slding_window_source_file)
 
+## This step saves the load the vhdlbin files and generate sliding window added .sld files
+
+## folder binaries/v2/crop/sliding containes the sld files
+## And also , removed and int casted files with trim extension is in the same folder.
