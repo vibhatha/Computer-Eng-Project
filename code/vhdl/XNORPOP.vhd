@@ -8,10 +8,12 @@ USE ieee.std_logic_1164.ALL;
 --------------------------------------------------
 
 ENTITY XNORPOP IS
+	generic (N: positive := 64); --array size
 	PORT (
-		A, B : IN std_logic_vector(8 DOWNTO 0);
-		R : OUT std_logic_vector(8 DOWNTO 0);
-		result : OUT INTEGER;
+		filter_bin, input_bin : IN std_logic_vector(N-1 DOWNTO 0);
+		xnor_Result : OUT std_logic_vector(N-1 DOWNTO 0);
+		pop_count : OUT INTEGER;
+		scaled_result : OUT INTEGER;
 		Output : OUT std_logic
 	);
 END XNORPOP;
@@ -20,7 +22,7 @@ END XNORPOP;
 
 ARCHITECTURE behav1 OF XNORPOP IS
 
-	SIGNAL RTemp : std_logic_vector(8 DOWNTO 0) := "000000000";
+	SIGNAL RTemp : std_logic_vector(N-1 DOWNTO 0);
 
 BEGIN
 	PROCESS
@@ -29,20 +31,21 @@ BEGIN
 	BEGIN
 		WAIT FOR 0.1 ns;
 		temp := 0;
-		RTemp <= A XNOR B;
-		R <= RTemp;
+		RTemp <= filter_bin XNOR input_bin;
+		xnor_Result <= RTemp;
 
 		FOR i IN RTemp'RANGE LOOP
 			IF RTemp(i) = '1' THEN
 				temp := temp + 1;
 			END IF;
 		END LOOP;
- 
-		pop_result := (2 * temp) - 9;
+		
+		pop_count <= temp;
+		
+		pop_result := (2 * temp) - N;
 		temp := 0;
-		result <= pop_result;
+		scaled_result <= pop_result;
  
-		-- compare to truth table
 		IF (pop_result > 0) THEN
 			Output <= '1';
 		ELSE

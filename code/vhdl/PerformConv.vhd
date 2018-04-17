@@ -1,6 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-USE STD.textio.ALL; --Dont forget to include this library for file operations.
+USE STD.textio.ALL;
 USE ieee.std_logic_textio.ALL;
 
 ENTITY read_matrix IS
@@ -9,29 +9,30 @@ END read_matrix;
 ARCHITECTURE beha1 OF read_matrix IS
 
 	COMPONENT XNORPOP IS
+		generic (N: positive := 64); --array size
 		PORT (
-			A, B : IN std_logic_vector(8 DOWNTO 0);
-			R : OUT std_logic_vector(8 DOWNTO 0);
-			result : OUT INTEGER;
+			filter_bin, input_bin : IN std_logic_vector(N-1 DOWNTO 0);
+			xnor_Result : OUT std_logic_vector(N-1 DOWNTO 0);
+			pop_count : OUT INTEGER;
+			scaled_result : OUT INTEGER;
 			Output : OUT std_logic
 		);
-	END COMPONENT; 
-	CONSTANT c_WIDTH : NATURAL := 9;
-	SIGNAL filter_bin : std_logic_vector(c_WIDTH - 1 DOWNTO 0) := "000000000";
-	SIGNAL input_bin : std_logic_vector(c_WIDTH - 1 DOWNTO 0) := "010101011";
+	END COMPONENT;
+	
+	CONSTANT c_WIDTH : NATURAL := 64;
 	--Inputs
-	SIGNAL A : std_logic_vector(c_WIDTH - 1 DOWNTO 0) := "000000000";
-	SIGNAL B : std_logic_vector(c_WIDTH - 1 DOWNTO 0) := "000000000";
- 
+	SIGNAL filter_bin : std_logic_vector(c_WIDTH - 1 DOWNTO 0);
+	SIGNAL input_bin : std_logic_vector(c_WIDTH - 1 DOWNTO 0);
 	--Outputs
-	SIGNAL R : std_logic_vector(c_WIDTH - 1 DOWNTO 0);
+	SIGNAL xnor_Result : std_logic_vector(c_WIDTH - 1 DOWNTO 0);
 	SIGNAL Output : std_logic;
-	SIGNAL result : INTEGER;
+	SIGNAL pop_count : INTEGER;
+	SIGNAL scaled_result : INTEGER;
  
 BEGIN
 	--Call XNORPOP
 	uut : XNORPOP
-	PORT MAP(filter_bin, input_bin, R, result, Output); 
+	PORT MAP(filter_bin, input_bin, xnor_Result, pop_count, scaled_result, Output); 
 
 	--Read filter process
 	PROCESS
@@ -92,11 +93,6 @@ BEGIN
 		END LOOP; 
 		WAIT FOR 10 ns; --after reading each line wait for 10ns.
 
-		A <= filter_bin;
-		B <= input_bin; 
- 
-		WAIT FOR 10 ns; --wait for 10ns get XNORPOP result. 
- 
 		write(line_num_output, Output, right, 1);
 		writeline(file_pointer_output, line_num_output);
 	END LOOP;
