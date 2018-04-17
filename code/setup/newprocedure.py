@@ -13,7 +13,7 @@ image_file = "image_3.jpg"
 
 
 fltapi1 = fltapi.FilterAPI(filter_path = filter_path, filter_file = filter_file)
-experiment_version ='v5'
+experiment_version ='v14'
 experiment_base='binaries/'+experiment_version
 output_path4_1 = experiment_base+'/crop'
 output_path4_2 = output_path4_1+'/bin/'
@@ -144,8 +144,8 @@ def step6():
 
 
 def step7():
-    ## Step 7
 
+    ## Step 7
     width = 400
     height = 400
     vhdl_source_bin_path = experiment_base+'/crop/pad/'
